@@ -11,8 +11,11 @@
 | `checkpoints/lenet_96.90.bin` | 两层卷积 LeNet | 9,690 / 10,000 | 96.90% | 101.020 ms | 106.066 ms |
 | `checkpoints/lenet_97.07.bin` | 两层卷积 LeNet | 9,707 / 10,000 | 97.07% | 101.372 ms | 106.479 ms |
 | `checkpoints/deep_97.45.bin` | 三层卷积 CNN | 9,745 / 10,000 | 97.45% | 106.158 ms | 111.278 ms |
+| `checkpoints/deep_99.52.bin` | 三层卷积 CNN | 9,952 / 10,000 | **99.52%** | 106.393 ms | 111.354 ms |
 
-以上数值为 NVIDIA A100-SXM4-80GB 上、batch size 256 的单次 CUDA 推理结果；三个正确数均与 CPU 参考前向一致。耗时会受同机其他任务影响。不同权重使用独立的 8 字节格式标识，程序会自动选择对应网络。
+以上数值为 NVIDIA A100-SXM4-80GB 上、batch size 256 的单次 CUDA 推理结果；四个正确数均与 CPU 参考前向一致。耗时会受同机其他任务影响。不同网络使用独立的 8 字节格式标识，程序会自动选择对应网络。
+
+`deep_99.52.bin` 是当前已保存并经过 CUDA 实测的最高精度权重，训练采用 30 轮、小幅平移和旋转增强、余弦学习率衰减以及权重指数滑动平均。
 
 两层卷积网络：`Conv5×5(6) → MaxPool2×2 → Conv5×5(16) → MaxPool2×2 → FC120 → FC84 → FC10`。
 
@@ -35,12 +38,13 @@ python scripts/download_mnist.py
 make
 ```
 
-在 A100 上运行三个公开版本：
+在 A100 上运行公开版本：
 
 ```bash
 ./mnist_infer checkpoints/lenet_96.90.bin data/t10k-images-idx3-ubyte data/t10k-labels-idx1-ubyte 256
 ./mnist_infer checkpoints/lenet_97.07.bin data/t10k-images-idx3-ubyte data/t10k-labels-idx1-ubyte 256
 ./mnist_infer checkpoints/deep_97.45.bin data/t10k-images-idx3-ubyte data/t10k-labels-idx1-ubyte 256
+./mnist_infer checkpoints/deep_99.52.bin data/t10k-images-idx3-ubyte data/t10k-labels-idx1-ubyte 256
 ```
 
 下载脚本使用标准 MNIST IDX 镜像，其数据与课程给出的 [ylecun/mnist](https://huggingface.co/datasets/ylecun/mnist) 相同。若已下载数据，可把四个未压缩的 IDX 文件放入 `data/`，无需重复下载。
@@ -51,6 +55,6 @@ make
 
 - `src/mnist_infer.cu`：两个网络的 CUDA 推理、IDX/权重读取和指标统计。
 - `scripts/download_mnist.py`：下载并解压 MNIST。
-- `checkpoints/`：三个公开权重。训练所需代码和其他实验权重不包含在此发布目录中。
+- `checkpoints/`：四个公开权重，包括当前最高精度的 `deep_99.52.bin`。训练所需代码和其他实验权重不包含在此发布目录中。
 
 代码按 [MIT License](LICENSE) 发布。
