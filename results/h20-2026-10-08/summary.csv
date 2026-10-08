@@ -1,0 +1,5 @@
+checkpoint,runs,images,correct,accuracy_pct,kernel_ms_median,kernel_ms_mean,kernel_ms_min,kernel_ms_max,kernel_ms_population_stddev,end_to_end_ms_median,end_to_end_ms_mean,end_to_end_ms_min,end_to_end_ms_max,end_to_end_ms_population_stddev
+lenet_96.90.bin,10,10000,9690,96.9,78.767,80.0527,61.96,107.76,10.5216,80.8485,82.102,64.144,109.789,10.494
+lenet_97.07.bin,10,10000,9707,97.07,78.762,81.3083,61.383,105.845,10.4813,80.75,83.3067,63.409,107.802,10.4746
+deep_97.45.bin,10,10000,9745,97.45,124.06,153.4791,107.934,412.461,87.2193,126.0175,155.5422,109.948,415.132,87.4166
+deep_99.52.bin,10,10000,9952,99.52,128.4345,132.3088,91.541,194.147,29.06,130.571,134.372,93.594,196.238,29.0466

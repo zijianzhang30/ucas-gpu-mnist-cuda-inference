@@ -1,0 +1,52 @@
+{
+  "started_at_utc": "2026-10-08T13:15:08.510617+00:00",
+  "platform": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+  "source_commit": {
+    "returncode": 0,
+    "stdout": "43b2d44ee1eebdecbedfe03d0196b59a567aafa6\n",
+    "stderr": ""
+  },
+  "git_status_before_run": {
+    "returncode": 0,
+    "stdout": "?? benchmarks/\n",
+    "stderr": ""
+  },
+  "batch_size": 256,
+  "repeats_per_checkpoint": 10,
+  "run_order": "interleaved: each repetition runs all four checkpoints in listed order",
+  "nvcc": {
+    "returncode": 0,
+    "stdout": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Oct_29_23:50:19_PDT_2024\nCuda compilation tools, release 12.6, V12.6.85\nBuild cuda_12.6.r12.6/compiler.35059454_0\n",
+    "stderr": ""
+  },
+  "nvidia_smi": {
+    "returncode": 0,
+    "stdout": "Thu Oct  8 21:15:08 2026\n+--------------------------------------------------------------------------------------------+\n| SMI 580.82.07                Driver Version: 580.82.07               CUDA Version: 13.0    |\n+-----------------------------------------------+----------------------+---------------------+\n| GPU      Name                    Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC|\n| Fan      Temp       Perf         Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M.|\n|                                               |                      |               MIG M.|\n|===============================================+======================+=====================|\n|   0      NVIDIA H20                      On   |   N/A            Off |                   0 |\n| N/A      35C        P0              N/A / N/A |      0MiB /  8806MiB |      0%     Default |\n|                                               |                      |                 N/A |\n+--------------------------------------------------------------------------------------------+\n\n+--------------------------------------------------------------------------------------------+\n| Processes:                                                                                 |\n| GPU      GI         CI              PID    Type   Process name                  GPU Memory |\n|          ID         ID                                                          Usage      |\n|============================================================================================|\n|  No running processes found                                                                |\n+--------------------------------------------------------------------------------------------+\n",
+    "stderr": ""
+  },
+  "build_command": "nvcc -O3 -std=c++17 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90 -o /root/gpu_mnist/mnist_infer_h20 src/mnist_infer.cu",
+  "sha256": {
+    "src/mnist_infer.cu": "a8443d9024dab457c3702c9952e7bb0338e8e32dfd91bd755122bfb2cf30599d",
+    "Makefile": "8e88d43965d69a59072300fb9d3f01b501ea32c3703d89f9feee88c5baa4b78b",
+    "executable": "599645bc62d068c8ffcabfc03a450dbe79a8983209a0ce81bd9babbfde25eb5e",
+    "data/t10k-images-idx3-ubyte": "0fa7898d509279e482958e8ce81c8e77db3f2f8254e26661ceb7762c4d494ce7",
+    "data/t10k-labels-idx1-ubyte": "ff7bcfd416de33731a308c3f266cc351222c34898ecbeaf847f06e48f7ec33f2",
+    "checkpoints/lenet_96.90.bin": "3bda8a80325a05d4eb08af4c11ef4ada4d6b5533c518e1b310af670e8c0fddb6",
+    "checkpoints/lenet_97.07.bin": "91bb758eb0c331767f1dfc938a84e5211557e6493cb7eee2c7cd186428371c8a",
+    "checkpoints/deep_97.45.bin": "1c2f3edd267a2e9aeb4c7405395a9706970c5442195a5807434add8a27a16dcb",
+    "checkpoints/deep_99.52.bin": "d54faca4b1d90d7a799db675c313c221e531cc9ad8b1aaed929db8fba1b16b9c"
+  },
+  "gpu": {
+    "name": "NVIDIA H20",
+    "compute_capability": [
+      9,
+      0
+    ],
+    "reported_total_memory_bytes": 9185201428,
+    "reported_multiprocessor_count": 78,
+    "torch_version": "2.8.0+cu126",
+    "torch_cuda_version": "12.6"
+  },
+  "status": "passed",
+  "finished_at_utc": "2026-10-08T13:16:14.312379+00:00"
+}
